@@ -6,12 +6,14 @@ public class AreaEntranceController : MonoBehaviour
 {
     public string areaTransitionName;
 
-        void Start()
+    private void Start()
     {
         if (areaTransitionName == PlayerController.player.areaTransitionName)
         {
             PlayerController.player.transform.position = transform.position;
         }
+
+        FadeController.fader.FadeFromBlack();
     }
 
     void Update()
