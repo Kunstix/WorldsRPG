@@ -9,7 +9,10 @@ public class PlayerController : MonoBehaviour
     [Header("Player")]
     public Rigidbody2D playerBody;
     public Animator playerAnimator;
+
+    [Header("Movement")]
     public float movingSpeed;
+    public bool canMove = true;
 
     [Header("Area")]
     public string areaTransitionName;
@@ -36,15 +39,25 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // Player Movement
-        playerBody.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * movingSpeed;
-        playerAnimator.SetFloat("moveX", playerBody.velocity.x);
-        playerAnimator.SetFloat("moveY", playerBody.velocity.y);
+        if (canMove)
+        {
+            playerBody.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * movingSpeed;
+            playerAnimator.SetFloat("moveX", playerBody.velocity.x);
+            playerAnimator.SetFloat("moveY", playerBody.velocity.y);
+        } else
+        {
+            playerBody.velocity = Vector2.zero;
+        }
+
 
         // Player Movement Animations
         if (Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Vertical") == 1 || Input.GetAxisRaw("Vertical") == -1)
         {
+            if (canMove)
+            {
             playerAnimator.SetFloat("lastMoveX", Input.GetAxisRaw("Horizontal"));
             playerAnimator.SetFloat("lastMoveY", Input.GetAxisRaw("Vertical"));
+            }
         }
 
         // Player stays within boundaries
