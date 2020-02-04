@@ -14,6 +14,7 @@ public class AreaEntranceController : MonoBehaviour
         }
 
         FadeController.fader.FadeFromBlack();
+        GameManager.GM.fading = false;
     }
 
     void Update()

@@ -42,7 +42,7 @@ public class FadeController : MonoBehaviour
             {
                 shouldFadeToBlack = false;
             }
-        }
+        } 
 
         // Screen's black should fade
         if (shouldFadeFromBlack)

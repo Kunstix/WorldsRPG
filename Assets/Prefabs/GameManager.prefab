@@ -1,0 +1,236 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3765629288952559214
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4171286182706007265}
+  - component: {fileID: 7878804815352617342}
+  m_Layer: 0
+  m_Name: PlayerStats2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4171286182706007265
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3765629288952559214}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8004066293208948774}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7878804815352617342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3765629288952559214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f66806c6be6660e4a975ee584ed14bf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerName: Woody
+  playerLevel: 3
+  maxLevel: 10
+  currentXp: 543
+  xpToNextLevel: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  baseXp: 1000
+  currentHealth: 0
+  maxHealth: 150
+  currentMana: 0
+  maxMana: 25
+  manaForLevel: 050000000a00000005000000050000001400000005000000000000000a000000000000000a000000
+  strength: 22
+  defense: 16
+  weaponPower: 1
+  armorPower: 1
+  currentWeapon: 
+  currentArmor: 
+  playerSprite: {fileID: 21300000, guid: e0ddba6d3fcf21f49949fcc95c849aac, type: 3}
+--- !u!1 &4894904775307437485
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2416927633562204806}
+  - component: {fileID: 2638845652676043856}
+  m_Layer: 0
+  m_Name: PlayerStats3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2416927633562204806
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4894904775307437485}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8004066293208948774}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2638845652676043856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4894904775307437485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f66806c6be6660e4a975ee584ed14bf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerName: Woody
+  playerLevel: 3
+  maxLevel: 10
+  currentXp: 543
+  xpToNextLevel: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  baseXp: 1000
+  currentHealth: 0
+  maxHealth: 150
+  currentMana: 0
+  maxMana: 25
+  manaForLevel: 050000000a00000005000000050000001400000005000000000000000a000000000000000a000000
+  strength: 22
+  defense: 16
+  weaponPower: 1
+  armorPower: 1
+  currentWeapon: 
+  currentArmor: 
+  playerSprite: {fileID: 21300000, guid: e0ddba6d3fcf21f49949fcc95c849aac, type: 3}
+--- !u!1 &8004066292169932867
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8004066292169932865}
+  - component: {fileID: 8004066292169932866}
+  m_Layer: 0
+  m_Name: PlayerStats
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8004066292169932865
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8004066292169932867}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8004066293208948774}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8004066292169932866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8004066292169932867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f66806c6be6660e4a975ee584ed14bf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerName: Kunstix
+  playerLevel: 1
+  maxLevel: 10
+  currentXp: 0
+  xpToNextLevel: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  baseXp: 1000
+  currentHealth: 0
+  maxHealth: 100
+  currentMana: 0
+  maxMana: 30
+  manaForLevel: 050000000a00000005000000050000001400000005000000000000000a000000000000000a000000
+  strength: 1
+  defense: 1
+  weaponPower: 1
+  armorPower: 1
+  currentWeapon: 
+  currentArmor: 
+  playerSprite: {fileID: 1750363475519744411, guid: 720c39bb2d7a22d49b51ea0dadfc6963,
+    type: 3}
+--- !u!1 &8004066293208948768
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8004066293208948774}
+  - component: {fileID: 8004066293208948775}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8004066293208948774
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8004066293208948768}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.8787026, y: -6.565615, z: -3.6398973}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8004066292169932865}
+  - {fileID: 4171286182706007265}
+  - {fileID: 2416927633562204806}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8004066293208948775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8004066293208948768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 338b85122823def43b4227f9c124bd4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerStats:
+  - {fileID: 8004066292169932866}
+  - {fileID: 7878804815352617342}
+  - {fileID: 2638845652676043856}

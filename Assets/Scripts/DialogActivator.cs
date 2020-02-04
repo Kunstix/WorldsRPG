@@ -17,8 +17,6 @@ public class DialogActivator : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("Active: " + !DialogManager.dialoguer.dialogBox.activeInHierarchy);
-
         if (activatable && Input.GetKeyDown(KeyCode.Return) && !DialogManager.dialoguer.dialogBox.activeInHierarchy)
         {
             Debug.Log("Dialog activated.");

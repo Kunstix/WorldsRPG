@@ -69,7 +69,7 @@ public class DialogManager : MonoBehaviour
         {
             // Dialog finished
             dialogBox.SetActive(false);
-            PlayerController.player.canMove = true;
+            GameManager.GM.dialogActive = false;
         }
     }
 
@@ -91,8 +91,8 @@ public class DialogManager : MonoBehaviour
         dialogText.text = dialogLines[currentLine];
         dialogBox.SetActive(true);
         justStartedDialog = true;
-        nameBox.SetActive(isPerson); 
-        PlayerController.player.canMove = false;
+        nameBox.SetActive(isPerson);
+        GameManager.GM.dialogActive = true;
     }
 
     public void CheckForName()
