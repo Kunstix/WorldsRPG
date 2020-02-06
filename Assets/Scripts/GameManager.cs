@@ -10,6 +10,10 @@ public class GameManager : MonoBehaviour
 
     public bool menuOpen, fading, dialogActive;
 
+    public string[] itemsOwned;
+    public int[] numberOfItems;
+    public ItemController[] items;
+
     void Start()
     {
         if(GM == null)
@@ -32,5 +36,18 @@ public class GameManager : MonoBehaviour
         {
             PlayerController.player.canMove = true;
         }
+    }
+
+    public ItemController GetItemDetails(string itemName)
+    {
+        for(int i = 0; i < items.Length; i++)
+        {
+           if (items[i].itemName == itemName)
+            {
+                return items[i];
+            }
+        }
+
+        return null;
     }
 }
