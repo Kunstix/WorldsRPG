@@ -1,12 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
+    public static MenuController menu;
+
     [Header("Menu Items")]
-    public GameObject menu;
+    public GameObject menuPanel;
     public GameObject[] windows;
 
     [Header("Player General Stats")]
@@ -14,6 +17,7 @@ public class MenuController : MonoBehaviour
 
     [Header("Player General Status Fields")]
     public Text[] nameTexts, healthTexts, manaTexts, lvlTexts, xpTexts;
+
     public Slider[] xpSliders;
     public Image[] playerImages;
 
@@ -28,17 +32,22 @@ public class MenuController : MonoBehaviour
     public Image playerImg;
 
     public ItemButtonController[] itemButtons;
+    public string selectedItem;
+    public ItemController activeItem;
+    public Text itemName, itemDescription, useButtonText;
+
+
 
     void Start()
     {
-
+        menu = this;
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (menu.activeInHierarchy)
+            if (menuPanel.activeInHierarchy)
             {
                 CloseMenu();
             }
@@ -49,7 +58,58 @@ public class MenuController : MonoBehaviour
         }
     }
 
-    public void UpdateStats()
+    private void OpenMenu()
+    {
+        menuPanel.SetActive(true);
+        UpdatePlayerInfos();
+        GameManager.GM.menuOpen = true;
+    }
+
+    public void ToggleWindow(int windowNumber)
+    {
+        UpdatePlayerInfos();
+
+        for (int i = 0; i < windows.Length; i++)
+        {
+            if (i == windowNumber)
+            {
+                windows[i].SetActive(!windows[i].activeInHierarchy);
+            }
+            else
+            {
+                windows[i].SetActive(false);
+            }
+        }
+    }
+
+    public void CloseMenu()
+    {
+        for (int i = 0; i < windows.Length; i++)
+        {
+            windows[i].SetActive(false);
+        }
+
+        menuPanel.SetActive(false);
+        GameManager.GM.menuOpen = false;
+    }
+
+    public void OpenStatus()
+    {
+        UpdatePlayerInfos();
+
+        UpdateDetailedPlayerStats(0);
+
+        Debug.Log("Open Stats.");
+        for (int i = 0; i < statusButtons.Length; i++)
+        {
+            // only shows playerbuttons for active players
+            statusButtons[i].SetActive(playerStats[i].gameObject.activeInHierarchy);
+            statusButtons[i].GetComponentInChildren<Text>().text = playerStats[i].playerName;
+        }
+    }
+
+    // Updates the player overview
+    public void UpdatePlayerInfos()
     {
         playerStats = GameManager.GM.playerStats;
 
@@ -74,71 +134,22 @@ public class MenuController : MonoBehaviour
         }
     }
 
-
-    public void ToggleWindow(int windowNumber)
-    {
-        UpdateStats();
-
-        for (int i = 0; i < windows.Length; i++)
-        {
-            if (i == windowNumber)
-            {
-                windows[i].SetActive(!windows[i].activeInHierarchy);
-            }
-            else
-            {
-                windows[i].SetActive(false);
-            }
-        }
-    }
-
-    private void OpenMenu()
-    {
-        menu.SetActive(true);
-        UpdateStats();
-        GameManager.GM.menuOpen = true;
-    }
-
-    public void CloseMenu()
-    {
-        for (int i = 0; i < windows.Length; i++)
-        {
-            windows[i].SetActive(false);
-        }
-
-        menu.SetActive(false);
-        GameManager.GM.menuOpen = false;
-    }
-
-    public void OpenStatus()
-    {
-        UpdateStats();
-
-        UpdatePlayerStats(0);
-
-        Debug.Log("Open Stats.");
-        for (int i = 0; i < statusButtons.Length; i++)
-        {
-           statusButtons[i].SetActive(playerStats[i].gameObject.activeInHierarchy);
-           statusButtons[i].GetComponentInChildren<Text>().text = playerStats[i].playerName;
-        }
-    }
-
-    public void UpdatePlayerStats(int selected)
+    // Grabs the character informations for a selected player and updates the single statspanel
+    public void UpdateDetailedPlayerStats(int selected)
     {
         statusName.text = playerStats[selected].playerName;
         statusHealth.text = "" + playerStats[selected].currentHealth + "/" + playerStats[selected].maxHealth;
         statusMana.text = "" + playerStats[selected].currentMana + "/" + playerStats[selected].maxMana;
         statusStrength.text = "" + playerStats[selected].strength.ToString();
         statusDefense.text = "" + playerStats[selected].defense.ToString();
-        if(playerStats[selected].currentArmor != "")
+        if (playerStats[selected].currentArmor != "")
         {
-           statusWeapon.text = playerStats[selected].currentWeapon.ToString();
+            statusWeapon.text = playerStats[selected].currentWeapon.ToString();
         }
         statusWeaponPwr.text = playerStats[selected].weaponPower.ToString();
         if (playerStats[selected].currentArmor != "")
         {
-           statusArmor.text = playerStats[selected].currentArmor.ToString();
+            statusArmor.text = playerStats[selected].currentArmor.ToString();
         }
         statusArmorPwr.text = playerStats[selected].armorPower.ToString();
         statusXp.text = (playerStats[selected].xpToNextLevel[playerStats[selected].playerLevel] - playerStats[selected].currentXp).ToString();
@@ -148,20 +159,54 @@ public class MenuController : MonoBehaviour
     public void ShowItems()
     {
         Debug.Log("Show items.");
-        for(int i = 0; i < itemButtons.Length; i++)
+        // No empty space between items
+        GameManager.GM.SortItems();
+
+        for (int i = 0; i < itemButtons.Length; i++)
         {
             itemButtons[i].buttonValue = i;
 
-            if(GameManager.GM.itemsOwned[i] != "")
+            // grab the owned items from the GM and update the itemButtons correspondently
+            if (GameManager.GM.itemsOwned[i] != "")
             {
                 itemButtons[i].buttonImage.gameObject.SetActive(true);
                 itemButtons[i].buttonImage.sprite = GameManager.GM.GetItemDetails(GameManager.GM.itemsOwned[i]).sprite;
                 itemButtons[i].amount.text = GameManager.GM.numberOfItems[i].ToString();
-            } else
+               // Debug.Log(GameManager.GM.itemsOwned[i] + ":" + GameManager.GM.numberOfItems[i]);
+            }
+            else
             {
                 itemButtons[i].buttonImage.gameObject.SetActive(false);
                 itemButtons[i].amount.text = "";
             }
         }
     }
+
+    public void UpdateSelectedItem(ItemController selectedItem)
+    {
+        Debug.Log("Update selected item.");
+        activeItem = selectedItem;
+        if (activeItem.isItem)
+        {
+            useButtonText.text = "Use";
+        }
+
+        if (activeItem.isWeapon || activeItem.isArmor)
+        {
+            useButtonText.text = "Equipp";
+        }
+
+        itemName.text = activeItem.itemName;
+        itemDescription.text = activeItem.description;
+
+    }
+
+    public void DiscardItem()
+    {
+        if (activeItem != null)
+        {
+            GameManager.GM.RemoveItem(activeItem.itemName);
+        }
+    }
+
 }

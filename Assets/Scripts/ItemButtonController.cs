@@ -9,13 +9,12 @@ public class ItemButtonController : MonoBehaviour
     public Text amount;
     public int buttonValue;
 
-    void Start()
+    public void SelectItem()
     {
-        
-    }
-
-    void Update()
-    {
-        
+        if (GameManager.GM.itemsOwned[buttonValue] != "")
+        {
+            Debug.Log("Itembutton hit: " + buttonValue);
+            MenuController.menu.UpdateSelectedItem(GameManager.GM.GetItemDetails(GameManager.GM.itemsOwned[buttonValue]));
+        }
     }
 }
