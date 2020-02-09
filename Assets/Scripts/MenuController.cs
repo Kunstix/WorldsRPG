@@ -36,6 +36,9 @@ public class MenuController : MonoBehaviour
     public ItemController activeItem;
     public Text itemName, itemDescription, useButtonText;
 
+    public GameObject itemCharChoiceMenu;
+    public Text[] itemCharChoiceNames;
+
 
 
     void Start()
@@ -80,6 +83,8 @@ public class MenuController : MonoBehaviour
                 windows[i].SetActive(false);
             }
         }
+
+        itemCharChoiceMenu.SetActive(false);
     }
 
     public void CloseMenu()
@@ -91,6 +96,8 @@ public class MenuController : MonoBehaviour
 
         menuPanel.SetActive(false);
         GameManager.GM.menuOpen = false;
+
+        itemCharChoiceMenu.SetActive(false);
     }
 
     public void OpenStatus()
@@ -172,7 +179,7 @@ public class MenuController : MonoBehaviour
                 itemButtons[i].buttonImage.gameObject.SetActive(true);
                 itemButtons[i].buttonImage.sprite = GameManager.GM.GetItemDetails(GameManager.GM.itemsOwned[i]).sprite;
                 itemButtons[i].amount.text = GameManager.GM.numberOfItems[i].ToString();
-               // Debug.Log(GameManager.GM.itemsOwned[i] + ":" + GameManager.GM.numberOfItems[i]);
+                // Debug.Log(GameManager.GM.itemsOwned[i] + ":" + GameManager.GM.numberOfItems[i]);
             }
             else
             {
@@ -207,6 +214,22 @@ public class MenuController : MonoBehaviour
         {
             GameManager.GM.RemoveItem(activeItem.itemName);
         }
+    }
+
+    public void OpenItemCharChoice()
+    {
+        itemCharChoiceMenu.SetActive(true);
+
+        for (int i = 0; i < itemCharChoiceNames.Length; i++)
+        {
+            itemCharChoiceNames[i].text = GameManager.GM.playerStats[i].playerName;
+            itemCharChoiceNames[i].transform.parent.gameObject.SetActive(GameManager.GM.playerStats[i].gameObject.activeInHierarchy);
+        }
+    }
+
+    public void CloseItemCharChoice()
+    {
+        itemCharChoiceMenu.SetActive(false);
     }
 
 }
